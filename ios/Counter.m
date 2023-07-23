@@ -14,6 +14,8 @@ RCT_EXTERN_METHOD(increment:(RCTResponseSenderBlock)callback)
 RCT_EXTERN_METHOD(decrement:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(greeting:(NSString*)name)
 RCT_EXTERN_METHOD(processObject:(NSDictionary *)object)
+RCT_EXTERN_METHOD(aesSecretKey: (RCTPromiseResolveBlock) resolve reject:(RCTPromiseRejectBlock) reject)
+RCT_EXTERN_METHOD(aesEncrypt: (NSString*) payload aesKey: (NSString*) aesKey resolve: (RCTPromiseResolveBlock) resolve reject:(RCTPromiseRejectBlock) reject)
 
 @end
 

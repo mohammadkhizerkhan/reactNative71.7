@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should haveText Component render text correctly 1`] = `
+<Text
+  allowFontScaling={false}
+  style={
+    [
+      {
+        "fontSize": 16,
+        "letterSpacing": -0.17,
+      },
+      undefined,
+    ]
+  }
+>
+  hello
+</Text>
+`;

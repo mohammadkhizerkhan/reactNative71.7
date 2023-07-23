@@ -82,6 +82,21 @@ function App(): JSX.Element {
     NativeModules.Counter.greeting('khan');
   };
 
+  const getAesKey = async () => {
+    const key = await NativeModules.Counter.aesSecretKey();
+    console.log('aes symetric key', key);
+    return key;
+  };
+
+  const encrypt = async () => {
+    const aesKey = await getAesKey();
+    const payload = JSON.stringify({
+      user_id: 'clik5ap3900060i5a72ojcrqw',
+    });
+    const encrypted = await NativeModules.Counter.aesEncrypt(payload, aesKey);
+    console.log('======+>', encrypted);
+  };
+
   const downloadPdf = async () => {
     // await downloadPDF(dummyPdf, 'dummyPDF');
     await downloadURLPdf(
@@ -101,6 +116,8 @@ function App(): JSX.Element {
         <Header />
         <Button title="decrement" onPress={decrement} />
         <Button title="download PDF" onPress={downloadPdf} />
+        <Button title="get aes" onPress={getAesKey} />
+        <Button title="ecrypt payload" onPress={encrypt} />
         <Section title="Learn More">
           Read the docs to discover what to do next:
         </Section>
