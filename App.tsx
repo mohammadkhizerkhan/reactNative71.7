@@ -17,7 +17,8 @@ import {
   Platform,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {downloadURLPdf} from './src/utils';
+import {downloadPDF, downloadURLPdf} from './src/utils';
+import {dummyPdf} from './src/utils/dummypdf';
 import {LoginScreen} from './src/screens/login';
 
 function App(): JSX.Element {
