@@ -16,7 +16,8 @@
     "ios-deploy": "^1.12.2",
     "react": "18.2.0",
     "react-native": "0.71.7",
-    "react-native-fs": "^2.20.0"
+    "react-native-fs": "^2.20.0",
+    "react-native-mmkv": "^2.10.2"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.22.5",

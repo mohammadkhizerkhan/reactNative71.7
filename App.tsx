@@ -20,6 +20,9 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {downloadPDF, downloadURLPdf} from './src/utils';
 import {dummyPdf} from './src/utils/dummypdf';
 import {LoginScreen} from './src/screens/login';
+import {MMKV} from 'react-native-mmkv';
+
+export const storage = new MMKV();
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -81,7 +84,14 @@ function App(): JSX.Element {
         <Button title="download PDF" onPress={downloadPdf} />
         <Button title="get aes" onPress={getAesKey} />
         <Button title="ecrypt payload" onPress={encrypt} />
-
+        <Button title="set mmkv" onPress={() => storage.set('name', 'Marc')} />
+        <Button
+          title="get mmkv"
+          onPress={() => {
+            const val = storage.getString('name');
+            console.log('========= get mmkv =======<', val);
+          }}
+        />
         <LoginScreen />
       </ScrollView>
     </SafeAreaView>
