@@ -15,12 +15,14 @@ import {
   NativeModules,
   Button,
   Platform,
+  View,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {downloadPDF, downloadURLPdf} from './src/utils';
 import {dummyPdf} from './src/utils/dummypdf';
 import {LoginScreen} from './src/screens/login';
 import {MMKV} from 'react-native-mmkv';
+import PDFView from 'react-native-view-pdf';
 
 export const storage = new MMKV();
 
@@ -71,6 +73,16 @@ function App(): JSX.Element {
     );
   };
 
+  const resourceType = 'url';
+  const resources = {
+    file:
+      Platform.OS === 'ios'
+        ? 'downloadedDocument.pdf'
+        : '/sdcard/Download/downloadedDocument.pdf',
+    url: 'https://www.sbicard.com/sbi-card-en/assets/docs/pdf/membership_MITC.pdf',
+    base64: 'JVBERi0xLjMKJcfs...',
+  };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -80,8 +92,19 @@ function App(): JSX.Element {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Button title="decrement" onPress={decrement} />
+        <View style={{height: 500}}>
+          <PDFView
+            fadeInDuration={250.0}
+            style={{flex: 1}}
+            resource={resources[resourceType]}
+            resourceType={resourceType}
+            onLoad={() => console.log(`PDF rendered from ${resourceType}`)}
+            onError={error => console.log('Cannot render PDF', error)}
+          />
+        </View>
+
         <Button title="download PDF" onPress={downloadPdf} />
+        {/* <Button title="decrement" onPress={decrement} />
         <Button title="get aes" onPress={getAesKey} />
         <Button title="ecrypt payload" onPress={encrypt} />
         <Button title="set mmkv" onPress={() => storage.set('name', 'Marc')} />
@@ -92,7 +115,7 @@ function App(): JSX.Element {
             console.log('========= get mmkv =======<', val);
           }}
         />
-        <LoginScreen />
+        <LoginScreen /> */}
       </ScrollView>
     </SafeAreaView>
   );
