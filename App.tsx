@@ -23,8 +23,13 @@ import {dummyPdf} from './src/utils/dummypdf';
 import {LoginScreen} from './src/screens/login';
 import {MMKV} from 'react-native-mmkv';
 import PDFView from 'react-native-view-pdf';
+import {createNavigationContainerRef} from '@react-navigation/native';
+import RootNavigation from './src/root.navigation';
+import {HomeScreen} from './src/screens';
+import {MainContainer} from './src/components';
 
 export const storage = new MMKV();
+export const navigationRef = createNavigationContainerRef<any>();
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -84,8 +89,10 @@ function App(): JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
+    <MainContainer>
+      {/* <HomeScreen /> */}
+      <RootNavigation />
+      {/* <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
@@ -104,7 +111,7 @@ function App(): JSX.Element {
         </View>
 
         <Button title="download PDF" onPress={downloadPdf} />
-        {/* <Button title="decrement" onPress={decrement} />
+        <Button title="decrement" onPress={decrement} />
         <Button title="get aes" onPress={getAesKey} />
         <Button title="ecrypt payload" onPress={encrypt} />
         <Button title="set mmkv" onPress={() => storage.set('name', 'Marc')} />
@@ -115,9 +122,9 @@ function App(): JSX.Element {
             console.log('========= get mmkv =======<', val);
           }}
         />
-        <LoginScreen /> */}
-      </ScrollView>
-    </SafeAreaView>
+        <LoginScreen />
+      </ScrollView> */}
+    </MainContainer>
   );
 }
 

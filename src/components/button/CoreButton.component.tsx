@@ -11,14 +11,14 @@ enum ButtonTypes {
 
 interface ButtonProps {
   buttonLabel: string;
-  buttonType: string | ButtonTypes;
+  buttonType?: string | ButtonTypes;
   buttonColor?: string;
   textColor?: string;
   disabled?: boolean;
   onPress?: () => void;
   buttonBodyStyle?: StyleProp<ViewStyle>;
   fontSize?: number;
-  testID: string;
+  testID?: string;
 }
 
 const GetStyleByType = (
