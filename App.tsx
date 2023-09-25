@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -16,24 +16,33 @@ import {
   Button,
   Platform,
   View,
+  Text,
+  TextInput,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {downloadPDF, downloadURLPdf} from './src/utils';
 import {dummyPdf} from './src/utils/dummypdf';
 import {LoginScreen} from './src/screens/login';
-import {MMKV} from 'react-native-mmkv';
+// import {MMKV} from 'react-native-mmkv';
 import PDFView from 'react-native-view-pdf';
 import {createNavigationContainerRef} from '@react-navigation/native';
 import RootNavigation from './src/root.navigation';
 import {HomeScreen} from './src/screens';
-import {MainContainer} from './src/components';
+import {MainContainer, PureComponent} from './src/components';
 
-export const storage = new MMKV();
+import Config from 'react-native-config';
+
+// export const storage = new MMKV();
 export const navigationRef = createNavigationContainerRef<any>();
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   console.log('=====>', NativeModules.Counter);
+  const userName = {
+    name: 'kumar',
+  };
+  console.log('Config------>', Config);
+  const [user, setUser] = useState(userName);
   if (Platform.OS === 'ios') {
     NativeModules.Counter.increment(value => {
       console.log('------ getting from native side', value);
@@ -90,8 +99,9 @@ function App(): JSX.Element {
 
   return (
     <MainContainer>
-      {/* <HomeScreen /> */}
-      <RootNavigation />
+      {/* <Text>hi</Text> */}
+      <HomeScreen />
+      {/* <RootNavigation /> */}
       {/* <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
@@ -122,8 +132,9 @@ function App(): JSX.Element {
             console.log('========= get mmkv =======<', val);
           }}
         />
-        <LoginScreen />
       </ScrollView> */}
+      {/* <PureComponent userName={user.name} /> */}
+      {/* <LoginScreen /> */}
     </MainContainer>
   );
 }
@@ -148,3 +159,21 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
+// def shared_pods
+
+// config = use_native_modules!
+// permission_path = "../node_modules/react-native-permission/ios"
+
+// pod 'GoogleSignIn','~> 5.0.2'
+// pod 'GoogleMaps'
+
+// end
+
+// target 'sample_project(prod)' do
+// shared_pods
+// end
+
+// target 'sample_project(dev)' do
+// shared_pods
+// end

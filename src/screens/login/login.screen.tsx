@@ -27,7 +27,7 @@ const LoginScreen = () => {
 
   const handleUserCheck = () => {
     // const result = userName ! ==''
-    return userName !=='' && /\d/.test(userName);
+    return userName !== '' && /\d/.test(userName);
   };
   return (
     <SafeAreaView>
